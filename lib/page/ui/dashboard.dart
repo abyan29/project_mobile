@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_project/widget/menu_card.dart'; // Pastikan path-nya benar
 
 class DashboardPage extends StatelessWidget {
   const DashboardPage({Key? key}) : super(key: key);
@@ -12,31 +13,39 @@ class DashboardPage extends StatelessWidget {
       ),
       body: ListView(
         children: [
-          // Menampilkan menu di dalam dashboard
-          ListTile(
-            title: const Text('Lihat Data KPI'),
+          const Padding(
+            padding: EdgeInsets.all(18.0),
+            child: Text(
+              'Menu Utama',
+              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+            ),
+          ),
+
+          // Gunakan komponen yang dipisah
+          MenuCard(
+            title: 'Lihat Data KPI',
+            icon: Icons.analytics_outlined,
+            iconColor: Colors.orange,
             onTap: () {
-              Navigator.pushNamed(context, '/kpiList'); // Ganti dengan nama route yang sesuai
+              Navigator.pushNamed(context, '/kpiList');
             },
           ),
-          ListTile(
-            title: const Text('Kelola Data KPI'),
+          MenuCard(
+            title: 'Kelola Data KPI',
+            icon: Icons.edit_note,
+            iconColor: Colors.green,
             onTap: () {
-              Navigator.pushNamed(context, '/manageKpi'); // Ganti dengan nama route yang sesuai
+              Navigator.pushNamed(context, '/manageKpi');
             },
           ),
-          ListTile(
-            title: const Text('Rekomendasi Karyawan'),
+          MenuCard(
+            title: 'Rekomendasi Karyawan',
+            icon: Icons.recommend,
+            iconColor: Colors.purple,
             onTap: () {
-              Navigator.pushNamed(context, '/recommendation'); // Ganti dengan nama route yang sesuai
+              Navigator.pushNamed(context, '/recommendation');
             },
           ),
-          // ListTile(
-          //   title: Text('Masuk ke deep web'),
-          //   onTap: () {
-          //     Navigator.pushNamed(context, '');
-          //   },
-          // ),
         ],
       ),
     );
