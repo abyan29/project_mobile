@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_project/widget/dashboard%20body.dart';
-import 'package:my_project/widget/welcome_banner.dart';
-import 'package:my_project/widget/menu_item.dart';
+// import 'package:my_project/widget/welcome_banner.dart';
+// import 'package:my_project/widget/menu_item.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({Key? key}) : super(key: key);

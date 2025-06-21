@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:my_project/page/ui/dashboard.dart'; // Pastikan file ini ada
+import 'package:my_project/db/db_helper.dart';
+import 'package:my_project/page/ui/dashboard.dart'; 
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -12,24 +13,27 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-  void _login() {
-    String username = _usernameController.text.trim();
-    String password = _passwordController.text.trim();
+  void _login() async {
+  String username = _usernameController.text.trim();
+  String password = _passwordController.text.trim();
 
-    if (username == 'admin' && password == 'admin123') {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => DashboardPage()),
-      );
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Username atau password salah'),
-          backgroundColor: Colors.red,
-        ),
-      );
-    }
+  bool isValid = await DBHelper.checkLogin(username, password);
+
+  if (isValid) {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => const DashboardPage()),
+    );
+  } else {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('Username atau password salah'),
+        backgroundColor: Colors.red,
+      ),
+    );
   }
+}
+
 
   @override
   Widget build(BuildContext context) {
